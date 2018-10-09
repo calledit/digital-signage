@@ -1,0 +1,47 @@
+Notes on generalization of software. TODO make this in to an installer
+
+
+1. Install the server. The server consists of two websites and a rsync deamon.
+	One website is the admin interface the other is an API where all the players will checkin every 5 min with status information. 
+	rsyncd is used to syncronize videos to the media players.
+	
+2.	Setup your main template player. This is the player that you will clone to create new devices.
+	The setup consits of entering the salting key and a server name that the device will comunicate with. The server and the player needs to have the same salting key.
+	
+	
+
+setup of server:
+install apache2 or nginx with ssl and rsyncd, disable port 80 of the webserver only use port 443 
+
+on server
+in /otp/
+create the folders make sure that the web server can write to them
+
+converting_files  exec  files_for_approval  misc_sync  rsync_config  rsync_share  screenshots  uploaded_raw_files  videos
+
+
+create /opt/rsync_config/secrets folder with 777
+
+symlink /etc/rsyncd.conf -> /opt/rsync_config/rsyncd.conf
+
+Install the database, the databse is used to keep track of player status and user acccess to the admin interface.
+
+change the salting keys, the sever name & the mysql password in the config files
+/clients/config.php
+/clients/device_script/upgrade_software.sh
+
+
+in /etc/default/rsync
+change rsync tcp port to RSYNC_OPTS='--port=80'
+So that we can penetrate firewalls
+
+
+
+
+Setup of device:
+Clone a device from the image.
+Start up the device, login in with ssh chnage the password the salting key and the server name. If you decided to use a self trusted ssl cert install the cert so that the device will be able to connect to the server.
+Make sure that the device pops up in the admin interface and that the device itself says that it is connected to the server.
+Power off device and make a new image from it. This will now be your base image.
+
+
