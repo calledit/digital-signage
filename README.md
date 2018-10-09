@@ -10,3 +10,5 @@ install scripts.
 My notes in regards to setting up a new instance can be found in the notes.txt
 file.
 
+
+![screenshot of admin panel](https://raw.githubusercontent.com/callesg/digital-signage/master/digital_sinage.png)
