@@ -14,7 +14,7 @@ setup of server:
 install apache2 or nginx with ssl and rsyncd, disable port 80 of the webserver only use port 443 
 
 on server
-in /otp/
+in /opt/
 create the folders make sure that the web server can write to them
 
 converting_files  exec  files_for_approval  misc_sync  rsync_config  rsync_share  screenshots  uploaded_raw_files  videos
